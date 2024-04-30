@@ -1,0 +1,47 @@
+:root {
+  --background: #F5F5F5;
+  --text: #212121;
+  --hover: #E0E0E0;
+  --action: #2962FF;
+  --abort: #F44336;
+}
+
+/* Обнуление стандартных стилей браузера */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+}
+
+body {
+  background-color: var(--background);
+}
+
+.container {
+  padding: 0 24px 24px;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.tab {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+}
+
+.tab:hover {
+  background-color: var(--hover);
+}
+
+.active-tab {
+  color: var(--action);
+  border-bottom: 1px solid var(--action);
+}

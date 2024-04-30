@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Система учёта хранения объектов</title>
+  <link rel="stylesheet" href="/style/common.css">
+  <link rel="stylesheet" href="/style/form.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="tabs">
+      <a class="tab" href="/">Cканировать</a>
+      <a class="tab active-tab" href="/new">Создать</a>
+      <a class="tab" href="/list">Последние созданные</a>
+    </div>
+    <div id="qrPlaceholder"></div>
+    <form id="form" class="form">
+      <div class="input-container">
+        <input name="title" required placeholder=" " class="input" id="title" type="text" />
+        <div class="input-label">
+          Название:
+        </div>
+      </div>
+      <div>
+        <div id="image-wrapper" class="image-wrapper hidden">
+          <img id="file-preview" src="" alt="" class="img-preview">
+          <div id="remove-btn" class="remove-btn"></div>
+        </div>
+        <input name="image" class="hidden" id="file" type="file" accept="image/*" />
+        <label id="file-label" class="file-input" for="file">
+          Выберите или перетащите сюда изображение
+          <span id="file-error" class="file-error"></span>
+        </label>
+      </div>
+      <button type="submit">
+        Сохранить
+      </button>
+    </form>
+  </div>
+  <script type="module" src="/scripts/form.js"></script>
+  <script type="module" src="/scripts/image.js"></script>
+</body>
+
+</html>

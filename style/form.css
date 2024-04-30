@@ -1,0 +1,109 @@
+.hidden {
+  display: none !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* input-text styling */
+.input-container {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  font-size: 15px;
+  padding: 8px 6px;
+  appearance: none;
+  -webkit-appearance: none; 
+  box-shadow: none !important; 
+  outline: none;
+  border: 1px solid var(--text);
+  border-radius: 5px;
+}
+
+.input:focus {
+  border-color: var(--action);
+}
+
+.input-label {
+  pointer-events: none;
+  top: 8px;
+  left: 8px;
+  position: absolute;
+  transition: all ease 0.1s;
+}
+
+.input:focus + .input-label, 
+.input:not(:placeholder-shown) + .input-label {
+  top: 1px;
+  font-size: 10px;
+}
+/* input-text styling end */
+
+/* input-file styling */
+.image-wrapper {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  border: 1px dashed var(--text);
+  border-radius: 10px;
+  position: relative;
+}
+
+.img-preview {
+  display: block;
+  height: 200px;
+  object-fit: contain;
+}
+
+.remove-btn {
+  width: 18px;
+    height: 28px;
+  cursor: pointer;
+  position: absolute;
+  top: -3px;
+  right: 5px;
+}
+
+.remove-btn::before,.remove-btn::after {
+  display: block;
+  content: "";
+  width: 2px;
+  height: 16px;
+  background: var(--text);
+}
+
+.remove-btn::after {
+  transform: rotate(45deg) translateY(-11px);
+}
+
+.remove-btn::before {
+  transform: rotate(-45deg) translateY(11px);
+}
+
+.file-input {
+  cursor: pointer;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  border-radius: 10px;
+  border: 1px dashed var(--text);
+}
+
+.file-input:hover, .dragged-over {
+  color: var(--action);
+  border-color: var(--action);
+}
+
+.file-error {
+  color: var(--abort);
+}
+/* input-file styling end */
