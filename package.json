@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "flickr-sdk": "^7.0.0-beta.7",
+    "@uploadcare/upload-client": "^6.14.1",
     "qr-code-styling": "^1.6.0-rc.1"
   },
   "devDependencies": {

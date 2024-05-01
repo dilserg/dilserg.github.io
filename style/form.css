@@ -8,6 +8,34 @@
   gap: 24px;
 }
 
+.add-btn {
+  cursor: pointer;
+  color: var(--action);
+  background-color: var(--secondary);
+  padding: 12px;
+  outline: none;
+  border-radius: 12px;
+  border: none;
+}
+
+.add-btn:hover {
+  background-color: var(--secondaryHover);
+}
+
+.submit-btn {
+  cursor: pointer;
+  color: white;
+  background-color: var(--action);
+  padding: 12px;
+  outline: none;
+  border-radius: 12px;
+  border: none;
+}
+
+.submit-btn:hover {
+  background-color: var(--actionHover);
+}
+
 /* input-text styling */
 .input-container {
   position: relative;
@@ -87,6 +115,7 @@
 }
 
 .file-input {
+  text-align: center;
   cursor: pointer;
   background-color: white;
   display: flex;

@@ -16,14 +16,12 @@ const parseFormData = (string) => {
 };
 
 const createQrCode = (formData) => {
-  const image = formData.image;
-  delete formData.image;
   const qrCode = new QRCodeStyling({
     width: 440,
     height: 440,
     type: 'svg',
     data: formatData(formData),
-    image,
+    image: formData.image,
     dotsOptions: {
       type: 'rounded',
     },

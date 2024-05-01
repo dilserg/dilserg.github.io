@@ -33,9 +33,13 @@
         <label id="file-label" class="file-input" for="file">
           Выберите или перетащите сюда изображение
           <span id="file-error" class="file-error"></span>
+          <progress id="progress-bar" class="hidden" value="0" max="100"></progress>
         </label>
       </div>
-      <button type="submit">
+      <button id="add-btn" type="button" class="add-btn">
+        Добавить поле
+      </button>
+      <button class="submit-btn" type="submit">
         Сохранить
       </button>
     </form>

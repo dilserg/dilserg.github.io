@@ -1,6 +1,9 @@
 import { createQrCode } from './qr-generator.js';
+import { uploadPhoto } from './image.js';
+import { saveNewItem } from './storage.js';
 
 const form = document.getElementById('form');
+const addButton = document.getElementById('add-btn');
 const imageInput = document.getElementById('file');
 const imageDrag = document.getElementById('file-label');
 const imgPreview = document.getElementById('file-preview');
@@ -10,21 +13,11 @@ const setFileError = (text) => {
   document.getElementById('file-error').innerText = text;
 };
 
-const showFilePreview = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      imgPreview.src = e.target.result;
-      document.getElementById('image-wrapper').classList.remove('hidden');
-      document.getElementById('file-label').classList.add('hidden');
-      setFileError('');
-      resolve();
-    };
-
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
+const showFilePreview = (url) => {
+  imgPreview.src = url;
+  document.getElementById('image-wrapper').classList.remove('hidden');
+  document.getElementById('file-label').classList.add('hidden');
+  setFileError('');
 };
 
 const handleFileDragOver = (e) => {
@@ -50,7 +43,8 @@ const handleFileDragDrop = async (e) => {
   if (!file) return;
   if (file.type.startsWith('image/')) {
     try {
-      await showFilePreview(file);
+      const url = await uploadPhoto(file);
+      showFilePreview(url);
     } catch (e) {
       setFileError(`Произошла ошибка: ${e.message}`);
     }
@@ -63,7 +57,8 @@ const handleImageInput = async (e) => {
   const file = e.target.files[0];
   if (!file) return;
   try {
-    await showFilePreview(file);
+    const url = await uploadPhoto(file);
+    showFilePreview(url);
   } catch (e) {
     setFileError(`Произошла ошибка: ${e.message}`);
   }
@@ -76,13 +71,19 @@ const handleRemoveFile = () => {
   document.getElementById('file-label').classList.remove('hidden');
 };
 
+const handleAddField = () => {
+  // TODO:
+}
+
 const handleFormSubmit = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  createQrCode({
+  const data = {
     image: imgPreview.src,
     title: formData.get('title'),
-  });
+  };
+  createQrCode(data);
+  saveNewItem(data);
 };
 
 imageInput.addEventListener('input', handleImageInput);
@@ -92,6 +93,7 @@ imageDrag.addEventListener('dragleave', handleFileDragLeave);
 imageDrag.addEventListener('drop', handleFileDragDrop);
 removeFileBtn.addEventListener('click', handleRemoveFile);
 form.addEventListener('submit', handleFormSubmit);
+addButton.addEventListener('click', handleFormSubmit);
 
 window.onbeforeunload = () => {
   imageInput.removeEventListener('input', handleImageInput);
@@ -101,4 +103,5 @@ window.onbeforeunload = () => {
   imageDrag.removeEventListener('dragleave', handleFileDragLeave);
   imageDrag.removeEventListener('drop', handleFileDragDrop);
   form.removeEventListener('submit', handleFormSubmit);
+  addButton.removeEventListener('click', handleAddField);
 };
