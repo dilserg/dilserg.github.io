@@ -1,8 +1,15 @@
 import QRCodeStyling from 'qr-code-styling';
+import { convertToHex } from './hex-converter'
 
 export const CODE_PHRASE = 'cyclistbalancerdapdowdy';
 
 const formatData = (formData) => {
+  const codedData = {
+    title: convertToHex(formData.title),
+    description: formData.description ? convertToHex(formData.description) : '',
+    image: formData.image,
+  };
+
   return CODE_PHRASE + JSON.stringify(formData);
 };
 

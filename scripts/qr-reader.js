@@ -1,10 +1,16 @@
 import { CODE_PHRASE } from './qr-generator';
 import { renderPopup } from './item-popup';
+import { decodeFromHex } from './hex-converter';
 import QrScanner from 'qr-scanner';
 
 const parseFormData = (string) => {
   if (string.startsWith(CODE_PHRASE)) {
-    return JSON.parse(string.substring(CODE_PHRASE.length));
+    const data = JSON.parse(string.substring(CODE_PHRASE.length));
+    return {
+      title: decodeFromHex(data.title),
+      description: decodeFromHex(data.description),
+      image: data.image,
+    };
   }
 };
 
