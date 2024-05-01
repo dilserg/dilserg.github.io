@@ -10,7 +10,7 @@ const formatData = (formData) => {
     image: formData.image,
   };
 
-  return CODE_PHRASE + JSON.stringify(formData);
+  return CODE_PHRASE + JSON.stringify(codedData);
 };
 
 const printImage = (source) => {
