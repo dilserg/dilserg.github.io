@@ -71,16 +71,13 @@ const handleRemoveFile = () => {
   document.getElementById('file-label').classList.remove('hidden');
 };
 
-const handleAddField = () => {
-  // TODO:
-}
-
 const handleFormSubmit = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const data = {
     image: imgPreview.src,
     title: formData.get('title'),
+    description: formData.get('description'),
   };
   createQrCode(data);
   saveNewItem(data);
@@ -93,7 +90,6 @@ imageDrag.addEventListener('dragleave', handleFileDragLeave);
 imageDrag.addEventListener('drop', handleFileDragDrop);
 removeFileBtn.addEventListener('click', handleRemoveFile);
 form.addEventListener('submit', handleFormSubmit);
-addButton.addEventListener('click', handleFormSubmit);
 
 window.onbeforeunload = () => {
   imageInput.removeEventListener('input', handleImageInput);
