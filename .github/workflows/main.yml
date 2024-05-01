@@ -26,6 +26,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      IMAGE_API_KEY: '388af66ef83dffd3b94a'
     runs-on: ubuntu-latest
     env:
       # IMAGE_API_KEY: ${{ secrets.IMAGE_API_KEY }}

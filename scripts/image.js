@@ -1,6 +1,6 @@
 import { uploadFile } from '@uploadcare/upload-client';
 
-const API_KEY = import.meta.env.IMAGE_API_KEY;
+const API_KEY = import.meta.env;
 
 const progress = document.getElementById('progress-bar');
 
