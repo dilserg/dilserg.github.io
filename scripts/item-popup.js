@@ -1,14 +1,15 @@
 import { createQrCode } from './qr-generator';
 
-const handleClosePopup = () => {
+const handleClosePopup = (whenClose = () => {}) => {
+  whenClose();
   document.body.style.overflow = 'auto';
   const popup = document.querySelector('.popup-back');
   document.body.removeChild(popup);
 };
 
-const handleBackgroundClick = (e) => {
+const handleBackgroundClick = (whenClose) => (e) => {
   if (e.target.className === 'popup-back') {
-    handleClosePopup();
+    handleClosePopup(whenClose);
   }
 };
 
@@ -38,7 +39,7 @@ const getItemDataHTML = (itemData) => {
   </div>`;
 };
 
-const renderPopup = (itemData) => {
+const renderPopup = (itemData, whenClose) => {
   document.body.style.overflow = 'hidden';
   const background = document.createElement('div');
 
@@ -71,8 +72,8 @@ const renderPopup = (itemData) => {
 
   requestAnimationFrame(() => {
     background.className = 'popup-back';
-    background.addEventListener('click', handleBackgroundClick);
-    closeBtn.addEventListener('click', handleClosePopup);
+    background.addEventListener('click', handleBackgroundClick(whenClose));
+    closeBtn.addEventListener('click', () => handleClosePopup(whenClose));
   });
 };
 
