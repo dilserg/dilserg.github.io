@@ -1,6 +1,6 @@
 import { uploadFile } from '@uploadcare/upload-client';
 
-const API_KEY = '388af66ef83dffd3b94a';
+const API_KEY = import.meta.env.IMAGE_API_KEY;
 
 const progress = document.getElementById('progress-bar');
 
@@ -12,6 +12,7 @@ const uploadPhoto = async (file) => {
   if (file.size > 1024 * 1024 * 10) {
     throw new Error('Слишком большой размер файла. Максимально - 10МБ');
   }
+  console.log(API_KEY);
   // progress.classList.remove('hidden');
   // const result = await uploadFile(file, {
   //   publicKey: API_KEY,
