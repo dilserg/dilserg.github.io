@@ -13,8 +13,8 @@
   <div class="container">
     <div class="tabs">
       <a class="tab" href="/">Cканировать</a>
-      <a class="tab active-tab" href="/new">Создать</a>
-      <a class="tab" href="/list">Последние созданные</a>
+      <a class="tab active-tab" href="/new">Добавить</a>
+      <a class="tab" href="/list">Последние добавленные</a>
     </div>
     <div id="qrPlaceholder"></div>
     <form id="form" class="form">
@@ -27,7 +27,7 @@
       <div>
         <div id="image-wrapper" class="image-wrapper hidden">
           <img id="file-preview" src="" alt="" class="img-preview">
-          <div id="remove-btn" class="remove-btn"></div>
+          <div id="remove-btn" class="cross-btn"></div>
         </div>
         <input name="image" class="hidden" id="file" type="file" accept="image/*" />
         <label id="file-label" class="file-input" for="file">
@@ -37,7 +37,7 @@
         </label>
       </div>
       <div class="input-container">
-        <textarea rows="10" name="description" placeholder="Дополнительная информация(опционально)"
+        <textarea rows="6" name="description" placeholder="Дополнительная информация (опционально)"
           class="input textarea" id="description"></textarea>
       </div>
       <button class="submit-btn" type="submit">

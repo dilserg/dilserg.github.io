@@ -79,6 +79,7 @@ const handleFormSubmit = (e) => {
     title: formData.get('title'),
     description: formData.get('description'),
   };
+  form.classList.add('hidden');
   createQrCode(data);
   saveNewItem(data);
 };

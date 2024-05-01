@@ -21,6 +21,10 @@ body {
   background-color: var(--background);
 }
 
+.hidden {
+  display: none !important;
+}
+
 .container {
   padding: 0 24px 24px;
 }
@@ -34,6 +38,8 @@ body {
 }
 
 .tab {
+  white-space: nowrap;
+  width: min-content;
   display: block;
   padding: 12px 18px;
   text-decoration: none;
@@ -46,4 +52,142 @@ body {
 .active-tab {
   color: var(--action);
   border-bottom: 1px solid var(--action);
+}
+
+#qrPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+
+#qrPlaceholder canvas {
+  width: 100%;
+  max-width: 440px;
+}
+
+.buttons-container {
+  width: 100%;
+  gap: 8px;
+  max-width: 440px;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons-container button {
+  cursor: pointer;
+  width: 100%;
+  color: var(--action);
+  background-color: var(--secondary);
+  padding: 12px;
+  outline: none;
+  border-radius: 12px;
+  border: none;
+}
+
+.popup-back {
+  transition: all ease 0.2s;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.6);
+}
+
+.popup-container {
+  border-radius: 16px;
+  padding: 16px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  bottom: 50px;
+  background-color: white;
+}
+
+.popup-image {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+  max-width: 568px;
+}
+
+.popup-description {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup-data {
+  overflow: auto;
+  height: calc(100% - 32px);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.popup-btn {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  cursor: pointer;
+  color: white;
+  background-color: var(--action);
+  padding: 12px;
+  outline: none;
+  border-radius: 12px;
+  border: none;
+}
+
+.popup-btn:hover {
+  background-color: var(--actionHover);
+}
+
+.cross-btn {
+  width: 18px;
+  height: 28px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
+.cross-btn::before,.cross-btn::after {
+  display: block;
+  content: "";
+  width: 2px;
+  height: 16px;
+  background: var(--text);
+}
+
+.cross-btn::after {
+  transform: rotate(45deg) translateY(-11px);
+}
+
+.cross-btn::before {
+  transform: rotate(-45deg) translateY(11px);
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 18px 12px 12px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    font-size: 15px;
+  }
+
+  .tab {
+    text-align: center;
+    width: 100%;
+    padding: 6px 12px;
+  }
 }

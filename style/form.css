@@ -1,7 +1,3 @@
-.hidden {
-  display: none !important;
-}
-
 .form {
   display: flex;
   flex-direction: column;
@@ -87,31 +83,6 @@
   display: block;
   height: 200px;
   object-fit: contain;
-}
-
-.remove-btn {
-  width: 18px;
-    height: 28px;
-  cursor: pointer;
-  position: absolute;
-  top: -3px;
-  right: 5px;
-}
-
-.remove-btn::before,.remove-btn::after {
-  display: block;
-  content: "";
-  width: 2px;
-  height: 16px;
-  background: var(--text);
-}
-
-.remove-btn::after {
-  transform: rotate(45deg) translateY(-11px);
-}
-
-.remove-btn::before {
-  transform: rotate(-45deg) translateY(11px);
 }
 
 .file-input {

@@ -1,25 +1,47 @@
 import QRCodeStyling from 'qr-code-styling';
 
-const qrPlaceholder = document.getElementById('qrPlaceholder');
-const form = document.getElementById('form');
-
-const CODE_PHRASE = 'cyclistbalancerdapdowdy';
+export const CODE_PHRASE = 'cyclistbalancerdapdowdy';
 
 const formatData = (formData) => {
   return CODE_PHRASE + JSON.stringify(formData);
 };
 
-const parseFormData = (string) => {
-  if (string.startsWith(CODE_PHRASE)) {
-    return string.substring(CODE_PHRASE.length);
-  }
+const printImage = (source) => {
+  var pwa = window.open(source, '_new');
+  pwa.document.open();
+  pwa.document.write(
+    `<html><head><script>function step1(){
+      setTimeout('step2()', 10);}
+      function step2(){window.print();window.close()}
+      </script></head><body onload='step1()'>
+      <img src='${source}' /></body></html>`
+  );
+  pwa.document.close();
+};
+
+const addControlButtons = ({ downloadHandler, printHandler }) => {
+  const buttons = document.createElement('div');
+  buttons.classList.add('buttons-container');
+  buttons.innerHTML = `
+  <button type="button" id="download-btn">Скачать</button>
+  <button type="button" id="print-btn">Распечатать</button>
+  `;
+
+  const qrPlaceholder = document.getElementById('qrPlaceholder');
+  qrPlaceholder.appendChild(buttons);
+
+  buttons
+    .querySelector('#download-btn')
+    .addEventListener('click', downloadHandler);
+
+  buttons.querySelector('#print-btn').addEventListener('click', printHandler);
 };
 
 const createQrCode = (formData) => {
   const qrCode = new QRCodeStyling({
     width: 440,
     height: 440,
-    type: 'svg',
+    type: 'canvas',
     data: formatData(formData),
     image: formData.image,
     dotsOptions: {
@@ -31,8 +53,14 @@ const createQrCode = (formData) => {
       margin: 0,
     },
   });
-  form.classList.add('hidden');
+
+  const qrPlaceholder = document.getElementById('qrPlaceholder');
   qrCode.append(qrPlaceholder);
+
+  addControlButtons({
+    downloadHandler: qrCode.download.bind(qrCode),
+    printHandler: () => printImage(formData.image),
+  });
 };
 
 export { createQrCode };
